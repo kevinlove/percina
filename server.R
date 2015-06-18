@@ -1,8 +1,4 @@
 library(shiny)
-library(ggplot2)
-library(dplyr)
-library(magrittr)
-library(tidyr)
 library(ridigbio)
 library(jsonlite)
 
@@ -29,7 +25,7 @@ shinyServer(function(input, output,session) {
             if (length(qry)) {
                 qry <- jsonlite::fromJSON(qry$rq)
                 idig_time <- system.time(hol <<- idig_search_records(rq = qry, fields = "all"))
-                if (nrow(hol) > 1) paste("Time taken:", idig_time[1], "\nNumber of records:", nrow(hol),"\nSome data columns have been ommited for easy viewing","\nUse the download button to view all of the data") else "problem"
+                if (nrow(hol) > 1) paste("Time taken:", idig_time[1], "\nNumber of records:", nrow(hol),"\nSome data columns have been ommited for easy viewing,","\nuse the download button to view all of the data") else "problem"
             } else {
                 "You need to specify a query"
             }
